@@ -1,0 +1,95 @@
+body {
+    margin: 0;
+    padding-bottom: 4%;
+    background-color: #ECEFF1;
+}
+
+header {
+    background-color: #36474E;
+    padding: 0.2% 0 0.2% 0;
+}
+
+.container {
+    width: 97%; 
+    margin: auto; /* moves text to middle */
+    overflow: hidden; /* wrap around contents */
+}
+
+#title {
+    float: left;
+    color: #ffffff;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 28px;
+    margin-top: 30px;
+}
+
+#menu {
+    float: right;
+    margin: 35px 0 35px 0;
+}
+
+ul {
+    padding-left: 0px;
+    list-style: none;
+    margin-bottom: 0px;
+}
+
+.row {
+    background-color: #ECEFF1;
+    display: flex;
+    flex-wrap:wrap;
+    width: 100%;
+    height:100%;
+    justify-content: space-between;
+}
+
+.cell {
+    background-color: #ffffff;
+    display: inline-block;
+    margin: 1% 0% 2% 0%;
+    flex-basis: calc(24% - 0.2%); /* 4 columms with space in b/w cells */
+}
+
+.cell img {
+    width: 100%;
+}
+
+/* On screens 770px wide or less, use two columns format */
+@media screen and (max-width: 770px) {
+    .cell {
+        flex-basis: calc(48% - 0.2%); /* 2 columms with space in b/w cells */
+        margin-top:2%;
+    }
+}
+
+.description {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 15px;
+    margin-left: 25px;
+}
+
+.orange {
+    color: #FF6B49;
+}
+
+.button { 
+    background-color: #FF6B49;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding: 8px 15px;
+    margin-top: auto;
+    margin-bottom: 0px;
+    margin-left: 25px;
+    visibility: hidden;
+    transition: all 1.8s ease;
+    opacity: 0;
+}
+
+.cell:hover .button {
+    visibility: visible;
+    opacity: 1;
+}
