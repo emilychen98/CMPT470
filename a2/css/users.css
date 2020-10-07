@@ -1,0 +1,65 @@
+body {
+    margin: 0%;
+    background-color:#95B183;
+}
+
+#form-section {
+    background-color:#B0C5A3;
+    padding: 5%;
+}
+
+#info-section{
+    padding: 5%
+}
+
+form {
+    margin: 2% 0% 2% 0%;
+    padding: 2%;
+    border: 1px solid black;
+    background-color: white;
+    border-width: 2px;
+}
+
+p{
+    float:left;
+    width: 40%;
+    margin-top:5px;
+}
+
+h2 {
+    font: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+th {
+    width: 25%;
+    padding-top:10%;
+}
+
+thead{
+    background-color: white;
+}
+
+tbody{
+    background-color: white;
+}
+
+.btn-outline-secondary{
+    float:right;
+    border: none;
+    color: black;        
+}
+
+.table-bordered{
+    margin: 2% 0 2% 0;
+    border: 2px solid black;
+}
+
+.table thead th{
+    border: 1px solid black;
+}
+
+.table-bordered td, .table-bordered th{
+    border: 1px solid black;
+
+}

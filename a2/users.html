@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Info</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/users.css">
+
+    <script type="text/javascript" src="users.js"></script>
+</head>
+<body>
+    <section id=form-section>
+      <h2>Contact Info Form</h2>
+      <form id="form" novalidate>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Name</label>
+          <input type="textbox" class="form-control" id="exampleFormControlInput1" placeholder="Enter Name" required>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter Email" required>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput2">Birthdate</label>
+          <input type="date" class="form-control" id="exampleFormControlInput2" placeholder="Enter Birthdate" required>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="addEntry()">Add Entry</button>
+      </form>
+    </section>
+
+    <section id=info-section>
+      <h2>Contact Info List</h2>
+      <table class="table table-bordered" id="user-table">
+          <thead>
+            <tr>
+              <th scope="col">
+                <p>Name</p>
+                <button type="button" class="btn btn-outline-secondary" onclick="onSortName()"><img id=sort-button-img1 src="./img/sort-ascending-2x.png"></button>
+              </th>
+              <th scope="col">
+                <p>Email</p>
+                <button type="button" class="btn btn-outline-secondary" onclick="onSortEmail()"><img id=sort-button-img2 src="./img/sort-ascending-2x.png"></button>
+              </th>        
+              <th scope="col">
+                <p>Birthday</p>
+                <button type="button" class="btn btn-outline-secondary" onclick="onSortBirthday()"><img id=sort-button-img3 src="./img/sort-ascending-2x.png"></button>
+              </th>
+              <th scope="col">
+                <p>Age</p>
+              </th>
+            </tr>
+          </thead>
+          <tbody><tr></tr>
+          </tbody>
+      </table>
+    </section>
+</body>
+</html>
