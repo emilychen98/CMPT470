@@ -43,19 +43,22 @@ function onSortName(){
     let sortButton = document.getElementById("sort-button-img1");
     if (sortButton.getAttribute("src") == "./img/sort-ascending-2x.png"){
         sortButton.setAttribute("src","./img/sort-descending-2x.png");
+        sortByColumn(0, "asc");
+
     } else {
         sortButton.setAttribute("src","./img/sort-ascending-2x.png");
+        sortByColumn(0, "desc");
     }
-
-    document.querySelector("tbody")
 }
 
 function onSortEmail(){
     let sortButton = document.getElementById("sort-button-img2");
     if (sortButton.getAttribute("src") == "./img/sort-ascending-2x.png"){
         sortButton.setAttribute("src","./img/sort-descending-2x.png");
+        sortByColumn(1,"asc");
     } else {
         sortButton.setAttribute("src","./img/sort-ascending-2x.png");
+        sortByColumn(1, "desc");
     }
 }
 
@@ -63,13 +66,38 @@ function onSortBirthday(){
     let sortButton = document.getElementById("sort-button-img3");
     if (sortButton.getAttribute("src") == "./img/sort-ascending-2x.png"){
         sortButton.setAttribute("src","./img/sort-descending-2x.png");
+        sortByColumn(2, "asc");
     } else {
         sortButton.setAttribute("src","./img/sort-ascending-2x.png");
+        sortByColumn(2, "desc");
     }
 }
 
-function removeRow(){
-    console.log("hi");
+function sortByColumn(col, direction) {
+    var i=0;
+    sort = true;
+    tbody = document.querySelector("tbody");
+
+    while (sort){
+        // first row is empty (hidden)
+        if (tbody.rows.length == 2) return // no sorting required - only 1 row
+        for (i=1; i<tbody.rows.length-1; i++){
+            sort = false;
+            if (direction == "asc"){
+                if (tbody.rows[i].cells[col].innerHTML.toLowerCase() > tbody.rows[i+1].cells[col].innerHTML.toLowerCase()){
+                    sort = true;
+                    tbody.rows[i].parentNode.insertBefore(tbody.rows[i+1], tbody.rows[i])
+                    break;
+                }
+            } else {
+                if (tbody.rows[i].cells[col].innerHTML.toLowerCase() < tbody.rows[i+1].cells[col].innerHTML.toLowerCase()){
+                    sort = true;
+                    tbody.rows[i].parentNode.insertBefore(tbody.rows[i+1], tbody.rows[i])
+                    break;
+                }
+            }
+        }
+    } 
 }
 
 function validate() {
