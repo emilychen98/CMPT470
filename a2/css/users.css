@@ -20,6 +20,10 @@ form {
     border-width: 2px;
 }
 
+.form-control {
+    margin-bottom: 1%;
+}
+
 p{
     float:left;
     width: 40%;

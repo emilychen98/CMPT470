@@ -1,10 +1,15 @@
 function addEntry() {
     if (!validate()) return;
     
-    var table = document.getElementById("user-table");
+    var table = document.getElementById("user-table").getElementsByTagName('tbody')[0];
     
-    // Create an empty <tr> element and add to last position of the table
-    var row = table.insertRow(-1);
+    // Create an empty <tr> element and add to the second last position of the table
+    var row;
+    if (table.rows.length == 1){
+        row = table.insertRow(0);
+    } else {
+        row = table.insertRow(table.rows.length - 1);
+    }
 
     // Create <td> elements
     var name = row.insertCell(0);
@@ -20,6 +25,16 @@ function addEntry() {
     birthday.innerHTML = bday;
     age.innerHTML = calcAge(bday).toString();
 
+    // Update average age
+    tbody = document.querySelector("tbody");
+    sum = 0;
+    for (i=0; i<tbody.rows.length-1; i++){
+        sum += parseInt(tbody.rows[i].cells[3].innerHTML);
+    }
+    average = sum/(tbody.rows.length-1);
+    document.getElementById("average-age").innerHTML = average.toFixed(2);
+
+    // Reset form input fields
     document.getElementById("form").reset();
 }
 
@@ -80,8 +95,8 @@ function sortByColumn(col, direction) {
 
     while (sort){
         // first row is empty (hidden)
-        if (tbody.rows.length == 2) return // no sorting required - only 1 row
-        for (i=1; i<tbody.rows.length-1; i++){
+        if (tbody.rows.length == 1 || tbody.rows.length == 2) return // no sorting required - 0 or 1 row
+        for (i=0; i<tbody.rows.length-2; i++){
             sort = false;
             if (direction == "asc"){
                 if (tbody.rows[i].cells[col].innerHTML.toLowerCase() > tbody.rows[i+1].cells[col].innerHTML.toLowerCase()){
