@@ -5,7 +5,7 @@ function addEntry() {
     
     // Create an empty <tr> element and add to the second last position of the table
     var row;
-    if (table.rows.length == 1){
+    if (table.rows.length == 1) {
         row = table.insertRow(0);
     } else {
         row = table.insertRow(table.rows.length - 1);
@@ -21,33 +21,32 @@ function addEntry() {
     name.innerHTML = document.getElementById("exampleFormControlInput1").value;
     email.innerHTML = document.getElementById("exampleInputEmail1").value;
     bday = document.getElementById("exampleFormControlInput2").value;
-    console.log(typeof(bday));
     birthday.innerHTML = bday;
     age.innerHTML = calcAge(bday).toString();
 
     // Update average age
     tbody = document.querySelector("tbody");
     sum = 0;
-    for (i=0; i<tbody.rows.length-1; i++){
+    for (i=0; i<tbody.rows.length-1; i++) {
         sum += parseInt(tbody.rows[i].cells[3].innerHTML);
     }
     average = sum/(tbody.rows.length-1);
-    document.getElementById("average-age").innerHTML = average.toFixed(2);
+    document.getElementById("average-age").innerHTML = average.toFixed(3);
 
     // Reset form input fields
     document.getElementById("form").reset();
 }
 
-function calcAge(bday){
+function calcAge(bday) {
     var date = new Date();
     var birthday = new Date(bday);
     var age = date.getFullYear()- birthday.getFullYear();
 
     if (birthday.getMonth() > date.getMonth()) {
         --age;
-    } else if (birthday.getMonth() == date.getMonth()){
+    } else if (birthday.getMonth() == date.getMonth()) {
         // +1 for birthday due to timezone difference
-        if ( (birthday.getDate()+1) > date.getDate()){
+        if ( (birthday.getDate()+1) > date.getDate()) {
             --age; 
         }
     }
@@ -56,7 +55,7 @@ function calcAge(bday){
 
 function onSortName(){
     let sortButton = document.getElementById("sort-button-img1");
-    if (sortButton.getAttribute("src") == "./img/sort-ascending-2x.png"){
+    if (sortButton.getAttribute("src") == "./img/sort-ascending-2x.png") {
         sortButton.setAttribute("src","./img/sort-descending-2x.png");
         sortByColumn(0, "asc");
 
@@ -66,9 +65,9 @@ function onSortName(){
     }
 }
 
-function onSortEmail(){
+function onSortEmail() {
     let sortButton = document.getElementById("sort-button-img2");
-    if (sortButton.getAttribute("src") == "./img/sort-ascending-2x.png"){
+    if (sortButton.getAttribute("src") == "./img/sort-ascending-2x.png") {
         sortButton.setAttribute("src","./img/sort-descending-2x.png");
         sortByColumn(1,"asc");
     } else {
@@ -77,9 +76,9 @@ function onSortEmail(){
     }
 }
 
-function onSortBirthday(){
+function onSortBirthday() {
     let sortButton = document.getElementById("sort-button-img3");
-    if (sortButton.getAttribute("src") == "./img/sort-ascending-2x.png"){
+    if (sortButton.getAttribute("src") == "./img/sort-ascending-2x.png") {
         sortButton.setAttribute("src","./img/sort-descending-2x.png");
         sortByColumn(2, "asc");
     } else {
@@ -93,12 +92,12 @@ function sortByColumn(col, direction) {
     sort = true;
     tbody = document.querySelector("tbody");
 
-    while (sort){
+    while (sort) {
         // first row is empty (hidden)
         if (tbody.rows.length == 1 || tbody.rows.length == 2) return // no sorting required - 0 or 1 row
         for (i=0; i<tbody.rows.length-2; i++){
             sort = false;
-            if (direction == "asc"){
+            if (direction == "asc") {
                 if (tbody.rows[i].cells[col].innerHTML.toLowerCase() > tbody.rows[i+1].cells[col].innerHTML.toLowerCase()){
                     sort = true;
                     tbody.rows[i].parentNode.insertBefore(tbody.rows[i+1], tbody.rows[i])
@@ -118,7 +117,7 @@ function sortByColumn(col, direction) {
 function validate() {
     var validate = true;
     // Validation
-    if (document.getElementById("exampleFormControlInput1").value == ''){
+    if (document.getElementById("exampleFormControlInput1").value == '') {
         document.getElementById("exampleFormControlInput1").style.borderColor="red";
         validate = false;
     } else {
@@ -126,7 +125,7 @@ function validate() {
         document.getElementById("exampleFormControlInput1").style.borderRadius=".25rem";
     }
 
-    if (document.getElementById("exampleInputEmail1").value == ''){
+    if (document.getElementById("exampleInputEmail1").value == '') {
         document.getElementById("exampleInputEmail1").style.borderColor = "red";
         validate = false;
     } else {
@@ -134,7 +133,7 @@ function validate() {
         document.getElementById("exampleInputEmail1").style.borderRadius=".25rem";
     }
 
-    if (document.getElementById("exampleFormControlInput2").value == ''){
+    if (document.getElementById("exampleFormControlInput2").value == '') {
         document.getElementById("exampleFormControlInput2").style.borderColor="red";
         validate = false;
     } else {

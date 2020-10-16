@@ -5,11 +5,11 @@ body {
 
 #form-section {
     background-color:#B0C5A3;
-    padding: 5%;
+    padding: 5% 15%;
 }
 
-#info-section{
-    padding: 5%
+#info-section {
+    padding: 5% 15%;
 }
 
 form {
@@ -24,14 +24,14 @@ form {
     margin-bottom: 1%;
 }
 
-p{
+p {
     float:left;
     width: 40%;
     margin-top:5px;
 }
 
 h2 {
-    font: Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     color: white;
 }
 
@@ -40,11 +40,11 @@ th {
     padding-top:10%;
 }
 
-thead{
+thead {
     background-color: white;
 }
 
-tbody{
+tbody {
     background-color: white;
 }
 
@@ -54,16 +54,15 @@ tbody{
     color: black;        
 }
 
-.table-bordered{
+.table-bordered {
     margin: 2% 0 2% 0;
     border: 2px solid black;
 }
 
-.table thead th{
+.table thead th {
     border: 1px solid black;
 }
 
-.table-bordered td, .table-bordered th{
+.table-bordered td, .table-bordered th {
     border: 1px solid black;
-
 }
