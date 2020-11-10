@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rectangles</title>
+
+   <!-- Stylesheets -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <link rel="stylesheet" href="./stylesheets/style.css">
+   <!-- Javascript-->
+   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <form action="/addRectangle" method="POST">
+    <h2>Create a Rectangle</h2>
+    <section class="form-row">
+      <div class="form-group col-md-2">
+        <label for="width">Width</label>
+        <input type="text" name="width" class="form-control" id="width">
+      </div>
+      <div class="form-group col-md-2">
+        <label for="height">Height</label>
+        <input type="text" name="height" class="form-control" id="height">
+      </div>
+      <div class="form-group col-md-2">
+        <label for="fill">Fill Color</label>
+        <select id="fill" name="fill" class="form-control">
+          <option selected>Choose...</option>
+          <option>Red</option>
+          <option>Orange</option>
+          <option>Yellow</option>
+          <option>Green</option>
+          <option>Blue</option>
+          <option>Indigo</option>
+          <option>Violet</option>
+        </select>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="border">Border Color</label>
+        <select id="border" name="border" class="form-control">
+          <option selected>Choose...</option>
+          <option>Red</option>
+          <option>Orange</option>
+          <option>Yellow</option>
+          <option>Green</option>
+          <option>Blue</option>
+          <option>Indigo</option>
+          <option>Violet</option>
+        </select>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="opacity">Opacity</label>
+        <select id="opacity" name="opacity" class="form-control">
+          <option selected>Choose...</option>
+          <option>0.2</option>
+          <option>0.4</option>
+          <option>0.6</option>
+          <option>0.8</option>
+          <option>1.0</option>
+        </select>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="pattern">Pattern</label>
+        <select id="pattern" name="pattern" class="form-control">
+          <option selected>Choose...</option>
+          <option>Solid</option>
+          <option>Linear Gradient</option>
+        </select>
+      </div>
+    </section>
+    <input class="submit-button" type="submit" value="Submit">
+  </form>
+  <form action="/updateRectangle" method="POST">
+    <h2>Modify a Rectangle</h2>
+    <section class="form-row">
+      <div class="form-group col">
+        <label for="id">id</label>
+        <input type="text" name="id" class="form-control" id="id">
+      </div>
+      <div class="form-group col">
+        <label for="width">Width</label>
+        <input type="text" name="width" class="form-control" id="width">
+      </div>
+      <div class="form-group col">
+        <label for="height">Height</label>
+        <input type="text" name="height" class="form-control" id="height">
+      </div>
+      <div class="form-group col">
+        <label for="fill">Fill Color</label>
+        <select id="fill" name="fill" class="form-control">
+          <option selected>Choose...</option>
+          <option>Red</option>
+          <option>Orange</option>
+          <option>Yellow</option>
+          <option>Green</option>
+          <option>Blue</option>
+          <option>Indigo</option>
+          <option>Violet</option>
+        </select>
+      </div>
+      <div class="form-group col">
+        <label for="border">Border Color</label>
+        <select id="border" name="border" class="form-control">
+          <option selected>Choose...</option>
+          <option>Red</option>
+          <option>Orange</option>
+          <option>Yellow</option>
+          <option>Green</option>
+          <option>Blue</option>
+          <option>Indigo</option>
+          <option>Violet</option>
+        </select>
+      </div>
+      <div class="form-group col">
+        <label for="opacity">Opacity</label>
+        <select id="opacity" name="opacity" class="form-control">
+          <option selected>Choose...</option>
+          <option>0.2</option>
+          <option>0.4</option>
+          <option>0.6</option>
+          <option>0.8</option>
+          <option>1.0</option>
+        </select>
+      </div>
+      <div class="form-group col">
+        <label for="pattern">Pattern</label>
+        <select id="pattern" name="pattern" class="form-control">
+          <option selected>Choose...</option>
+          <option>Solid</option>
+          <option>Linear Gradient</option>
+        </select>
+      </div>
+    </section>
+    <input class="submit-button" type="submit" value="Submit">
+  </form>
+  <section>
+    <table class="table border">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">width</th>
+          <th scope="col">height</th>
+          <th scope="col">color</th>
+          <th scope="col">border</th>
+          <th scope="col">opacity</th>
+          <th scope="col">pattern</th>
+          <th scope="col">delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if(locals.rectangles)  { %>
+          <% rectangles.forEach(function(rect) { %>
+            <tr>
+              <td><%= rect.id %></td>
+              <td><%= rect.width %></td>
+              <td><%= rect.height %></td>
+              <td><%= rect.color %></td>
+              <td><%= rect.bordercolor %></td>
+              <td><%= rect.opacity %></td>
+              <td><%= rect.pattern %></td>
+              <td><button class="deleteButton" id="b<%=rect.id%>">Delete</button></td>
+            </tr>
+          <% }); %>
+        <% } %>
+      </tbody>
+      
+    </table>
+
+  </section>
+  <script src="./javascripts/rectangles.js"></script>
+</body>
+</html>
+
+
