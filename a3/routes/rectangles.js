@@ -63,8 +63,8 @@ router.post('/updateRectangle', (req,res) => {
     let id = req.body.id;
     let width = req.body.width;
     let height = req.body.height;
-    let color = req.body.fill;    
-    let bordercolor = req.body.border;
+    let color = req.body.color;    
+    let bordercolor = req.body.bordercolor;
     let opacity = req.body.opacity;
     let pattern = req.body.pattern;
 
