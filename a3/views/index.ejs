@@ -12,24 +12,24 @@
    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
+  <!-- Create a Rectangle -->
   <form action="/addRectangle" method="POST">
     <h2>Create a Rectangle</h2>
     <section class="form-row">
       <div class="form-group col-md-2">
         <label for="width">Width</label>
-        <input type="text" name="width" class="form-control" id="width">
+        <input type="text" name="width" class="form-control" id="width" required>
       </div>
       <div class="form-group col-md-2">
         <label for="height">Height</label>
-        <input type="text" name="height" class="form-control" id="height">
+        <input type="text" name="height" class="form-control" id="height" required>
       </div>
       <div class="form-group col-md-2">
         <label for="fill">Fill Color</label>
         <select id="fill" name="fill" class="form-control">
-          <option selected>Choose...</option>
+          <option selected>Black</option>
           <option>Red</option>
           <option>Orange</option>
-          <option>Yellow</option>
           <option>Green</option>
           <option>Blue</option>
           <option>Indigo</option>
@@ -39,38 +39,32 @@
       <div class="form-group col-md-2">
         <label for="border">Border Color</label>
         <select id="border" name="border" class="form-control">
-          <option selected>Choose...</option>
+          <option selected>Black</option>
           <option>Red</option>
-          <option>Orange</option>
-          <option>Yellow</option>
           <option>Green</option>
-          <option>Blue</option>
-          <option>Indigo</option>
-          <option>Violet</option>
         </select>
       </div>
       <div class="form-group col-md-2">
         <label for="opacity">Opacity</label>
         <select id="opacity" name="opacity" class="form-control">
-          <option selected>Choose...</option>
-          <option>0.2</option>
-          <option>0.4</option>
-          <option>0.6</option>
-          <option>0.8</option>
-          <option>1.0</option>
+          <option>0.5</option>
+          <option selected>1.0</option>
         </select>
       </div>
       <div class="form-group col-md-2">
         <label for="pattern">Pattern</label>
         <select id="pattern" name="pattern" class="form-control">
-          <option selected>Choose...</option>
-          <option>Solid</option>
-          <option>Linear Gradient</option>
+          <option selected>Solid</option>
+          <option>Chevron</option>
+          <option>Checkerboard</option>
+          <option>Cubes</option>
         </select>
       </div>
     </section>
     <input class="submit-button" type="submit" value="Submit">
   </form>
+
+  <!-- Update a Rectangle -->
   <form action="/updateRectangle" method="POST">
     <h2>Modify a Rectangle</h2>
     <section class="form-row">
@@ -90,9 +84,9 @@
         <label for="fill">Fill Color</label>
         <select id="fill" name="fill" class="form-control">
           <option selected>Choose...</option>
+          <option>Black</option>
           <option>Red</option>
           <option>Orange</option>
-          <option>Yellow</option>
           <option>Green</option>
           <option>Blue</option>
           <option>Indigo</option>
@@ -103,23 +97,16 @@
         <label for="border">Border Color</label>
         <select id="border" name="border" class="form-control">
           <option selected>Choose...</option>
+          <option>Black</option>
           <option>Red</option>
-          <option>Orange</option>
-          <option>Yellow</option>
           <option>Green</option>
-          <option>Blue</option>
-          <option>Indigo</option>
-          <option>Violet</option>
         </select>
       </div>
       <div class="form-group col">
         <label for="opacity">Opacity</label>
         <select id="opacity" name="opacity" class="form-control">
           <option selected>Choose...</option>
-          <option>0.2</option>
-          <option>0.4</option>
-          <option>0.6</option>
-          <option>0.8</option>
+          <option>0.5</option>
           <option>1.0</option>
         </select>
       </div>
@@ -128,12 +115,16 @@
         <select id="pattern" name="pattern" class="form-control">
           <option selected>Choose...</option>
           <option>Solid</option>
-          <option>Linear Gradient</option>
+          <option>Chevron</option>
+          <option>Checkerboard</option>
+          <option>Cubes</option>        
         </select>
       </div>
     </section>
     <input class="submit-button" type="submit" value="Submit">
   </form>
+
+  <!--Table Displaying All Rectangles-->
   <section>
     <table class="table border">
       <thead class="thead-light">
@@ -163,13 +154,60 @@
             </tr>
           <% }); %>
         <% } %>
+        <tr>
+          <td colspan = "7"></td>
+          <td ><button class="deleteAllButton" id="deleteAllButton">Delete All</button></td>
+        </tr>
       </tbody>
-      
-    </table>
 
+    </table>
+  </section>
+
+  <!--Draw and Display Rectangles-->
+  <!--Note SVG Patterns consulted from: https://codepen.io/geoffgraham/details/KmMVby-->
+  <section id="rectangleDisplay">
+    <h2 id="rectangleDisplayHeader">Display of All Rectangles</h2>
+    <% if(locals.rectangles)  { %>
+        <% rectangles.forEach(function(rect) { %>
+          <svg width="<%= rect.width %>" height="<%= rect.height%>" id="svg">
+            <% if (rect.pattern == "Solid") { %>
+                <rect 
+                  x="0" y="0" 
+                  width="<%= rect.width %>" 
+                  height="<%= rect.height%>" 
+                  style="fill:<%=rect.color%>;stroke:<%=rect.bordercolor %>;stroke-width:5;opacity:<%=rect.opacity%>">
+                </rect>
+            <% } else { %>
+              <% if (rect.pattern == "Chevron") { %>
+                  <pattern id="pattern-Chevron" x="0" y="0" width="15" height="15" patternUnits="userSpaceOnUse" fill="black">
+                      <path d="M8 2.156l-1.406 1.438-6.594 6.563v5.688l.125-.125 7.875-7.906 8 8v-5.625l-6.594-6.594-1.406-1.438z" />
+                  </pattern>
+              <% } else if (rect.pattern == "Checkerboard") { %>
+                  <pattern id="pattern-Checkerboard" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                    <rect class="checker" x="0" width="10" height="10" y="0"></rect>
+                    <rect class="checker" x="10" width="10" height="10" y="10"></rect>
+                  </pattern>
+              <% } else if (rect.pattern == "Cubes") { %>
+                  <pattern id="pattern-Cubes" x="0" y="12.6" patternUnits="userSpaceOnUse" width="12.6" height="20" viewBox="0 0 10 16"> 
+                    <!-- Cube code courtest of SVGeneration: http://www.svgeneration.com/recipes/3D-Cubes/ -->
+                    <g id="cube">
+                      <!-- We'll apply the `fill` in the CSS for flexibility -->
+                      <path class="left-shade" d="M0 0l5 3v5l-5 -3z"></path>
+                      <path class="right-shade" d="M10 0l-5 3v5l5 -3"></path>
+                    </g>
+                    <!-- Apply the cube shapes -->
+                    <use x="5" y="8" xlink:href="#cube"></use>
+                    <use x="-5" y="8" xlink:href="#cube"></use>
+                  </pattern>
+              <% } %>
+              <rect x="0" y="0" width="<%= rect.width %>" height="<%= rect.height%>" fill="url(#pattern-<%=rect.pattern%>)" 
+                style="stroke:<%=rect.bordercolor %>;stroke-width:5; opacity:<%=rect.opacity%>";>
+              />
+            <% } %>
+          </svg>
+        <% }); %>
+    <% } %>
   </section>
   <script src="./javascripts/rectangles.js"></script>
 </body>
 </html>
-
-

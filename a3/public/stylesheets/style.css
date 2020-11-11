@@ -29,3 +29,21 @@ h2 {
   float: right;
 }
 
+#rectangleDisplay {
+  border: 1px solid black;
+  padding: 1%;
+
+}
+
+#rectangleDisplayHeader {
+  margin: 2%;
+  color: black;
+}
+
+.deleteButton{
+  width: 100px;
+}
+
+.deleteAllButton{
+  width: 100px;
+}

@@ -63,6 +63,13 @@ var rectangleModel = {
         })
         return
     },  
+    deleteAllRectangles: function(){
+        let sql = "DELETE FROM rectangle";
+        let query = db.query(sql, (err, result) => {
+            if(err) throw err;
+        })
+        return
+    }
 }
   
 module.exports = rectangleModel;

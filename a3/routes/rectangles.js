@@ -79,4 +79,10 @@ router.post('/deleteRectangle', (req,res) => {
     res.redirect('/');
 })
 
+// Delete all Rectangles
+router.post('/deleteAllRectangles', (req,res) => {
+    var rectangle = rectangleModel.deleteAllRectangles();
+    res.redirect('/');
+})
+
 module.exports = router;
