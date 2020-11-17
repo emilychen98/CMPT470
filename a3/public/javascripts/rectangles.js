@@ -52,6 +52,12 @@ function updateRect(){
     var opacity = this.parentNode.parentNode.cells[5].textContent;
     var pattern = this.parentNode.parentNode.cells[6].textContent.toLowerCase();
 
+    // The fill color will be black if a pattern is set
+    if (pattern != "solid" && color != "black") {
+        color = "black";
+        this.parentNode.parentNode.cells[3].textContent = "black";
+    }
+
     axios({
         method: "POST",
         data: {

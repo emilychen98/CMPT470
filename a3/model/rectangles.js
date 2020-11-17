@@ -33,7 +33,7 @@ var rectangleModel = {
                 return false;
             }
         })
-        return
+        return true;
     },
     getRectangles: function(cb){
         let sql = 'SELECT * FROM rectangle';
@@ -57,6 +57,7 @@ var rectangleModel = {
                 return false;
             }
         })
+        return true;
     },
     deleteRectangle: function(id){
         let sql = `DELETE FROM rectangle WHERE id = ${id}`;

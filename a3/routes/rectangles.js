@@ -43,6 +43,11 @@ router.post('/addRectangle', (req,res) => {
     let opacity = req.body.opacity;
     let pattern = req.body.pattern;
 
+    // The fill color will be black if a pattern is set
+    if (pattern != "solid" && color != "black") {
+        color = "black";
+    }
+
     var rectangle = rectangleModel.addRectangle(width, height, color, bordercolor, opacity, pattern);
 
     if (!rectangle){
