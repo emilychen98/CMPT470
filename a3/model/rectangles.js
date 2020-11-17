@@ -29,8 +29,9 @@ var rectangleModel = {
         let rectangle = {width, height, color, bordercolor, opacity, pattern};
         let sql = 'INSERT INTO rectangle SET ?';
         let query = db.query(sql, rectangle, (err, result) => {
-            if(err) throw err;
-            // console.log(result);
+            if(err) {
+                return false;
+            }
         })
         return
     },
@@ -52,7 +53,9 @@ var rectangleModel = {
     updateRectangle: function(id, width, height, color, bordercolor, opacity, pattern){
         let sql = `UPDATE rectangle SET width = '${width}', height = '${height}', color = '${color}', bordercolor = '${bordercolor}', opacity = '${opacity}', pattern = '${pattern}' WHERE id = '${id}'`;
         let query = db.query(sql, (err, result) => {
-            if(err) throw err;
+            if(err) {
+                return false;
+            }
         })
     },
     deleteRectangle: function(id){

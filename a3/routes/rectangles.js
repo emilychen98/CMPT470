@@ -44,6 +44,10 @@ router.post('/addRectangle', (req,res) => {
     let pattern = req.body.pattern;
 
     var rectangle = rectangleModel.addRectangle(width, height, color, bordercolor, opacity, pattern);
+
+    if (!rectangle){
+        console.log("Error: Failed to add rectangle");
+    }
     res.redirect('/'); // redirect to home page to render view
 })
   
@@ -69,6 +73,9 @@ router.post('/updateRectangle', (req,res) => {
     let pattern = req.body.pattern;
 
     var rectangle = rectangleModel.updateRectangle(id, width, height, color, bordercolor, opacity, pattern);
+    if (!rectangle){
+       console.log("Error: Failed to update rectangle");
+    }
     res.redirect('/');
 })
 

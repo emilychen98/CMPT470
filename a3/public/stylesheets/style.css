@@ -67,3 +67,16 @@ p {
 .deleteAllButton {
   width: 80px;
 }
+
+.ct {
+  display: inline-block;
+  text-align: justify;
+  font-weight: 600;
+  margin-bottom: 2%;
+}
+
+#rectDescript {
+  color: white;
+  background-color: grey;
+  padding-left: 3%;
+}
