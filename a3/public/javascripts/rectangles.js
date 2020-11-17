@@ -23,7 +23,7 @@ function deleteRect(){
         data: {
             id: sqlID
         },
-        url: 'http://localhost:3000/deleteRectangle',
+        url: '/deleteRectangle',
     }).then((res)=> {
         window.location.reload();
     })
@@ -36,7 +36,7 @@ function deleteAllRect(){
         method: "POST",
         data: {
         },
-        url: 'http://localhost:3000/deleteAllRectangles',
+        url: '/deleteAllRectangles',
     }).then((res)=> {
         window.location.reload();
     })
@@ -63,7 +63,7 @@ function updateRect(){
             opacity: opacity,
             pattern: pattern,
         },
-        url: 'http://localhost:3000/updateRectangle',
+        url: '/updateRectangle',
     }).then((res)=> {
         window.location.reload();
     })
