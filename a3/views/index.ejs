@@ -30,21 +30,21 @@
       <div class="form-group col-md-2">
         <label for="fill">Fill Color</label>
         <select id="fill" name="fill" class="form-control">
-          <option selected>Black</option>
-          <option>Red</option>
-          <option>Orange</option>
-          <option>Green</option>
-          <option>Blue</option>
-          <option>Indigo</option>
-          <option>Violet</option>
+          <option selected>black</option>
+          <option>red</option>
+          <option>orange</option>
+          <option>green</option>
+          <option>blue</option>
+          <option>indigo</option>
+          <option>violet</option>
         </select>
       </div>
       <div class="form-group col-md-2">
         <label for="border">Border Color</label>
         <select id="border" name="border" class="form-control">
-          <option selected>Black</option>
-          <option>Red</option>
-          <option>Green</option>
+          <option selected>black</option>
+          <option>red</option>
+          <option>green</option>
         </select>
       </div>
       <div class="form-group col-md-2">
@@ -57,16 +57,15 @@
       <div class="form-group col-md-2">
         <label for="pattern">Pattern</label>
         <select id="pattern" name="pattern" class="form-control">
-          <option selected>Solid</option>
-          <option>Chevron</option>
-          <option>Checkerboard</option>
-          <option>Cubes</option>
+          <option selected>solid</option>
+          <option>chevron</option>
+          <option>checkerboard</option>
+          <option>cubes</option>
         </select>
       </div>
     </section>
     <input class="submit-button" type="submit" value="Submit">
     <p><b>**Note: If a pattern is selected, the fill color will default to black</b></p>
-    <p><b>**The maximum width a rectangle can be before overflow is 1020</b></p>
   </form>
 
   <!--Table Displaying All Rectangles-->
@@ -122,7 +121,8 @@
         <% rectangles.forEach(function(rect) { %>
           <container class="ct">
             <svg width="<%= rect.width %>" height="<%= rect.height%>" id="svg">
-              <% if (rect.pattern == "Solid") { %>
+              <% var pattern = rect.pattern.toLowerCase() %>
+              <% if (pattern == "solid") { %>
                   <rect 
                     x="0" y="0" 
                     width="<%= rect.width %>" 
@@ -130,17 +130,17 @@
                     style="fill:<%=rect.color%>;stroke:<%=rect.bordercolor %>;stroke-width:5;opacity:<%=rect.opacity%>">
                   </rect>
               <% } else { %>
-                <% if (rect.pattern == "Chevron") { %>
-                    <pattern id="pattern-Chevron" x="0" y="0" width="15" height="15" patternUnits="userSpaceOnUse" fill="black">
+                <% if (pattern == "chevron") { %>
+                    <pattern id="pattern-chevron" x="0" y="0" width="15" height="15" patternUnits="userSpaceOnUse" fill="black">
                         <path d="M8 2.156l-1.406 1.438-6.594 6.563v5.688l.125-.125 7.875-7.906 8 8v-5.625l-6.594-6.594-1.406-1.438z" />
                     </pattern>
-                <% } else if (rect.pattern == "Checkerboard") { %>
-                    <pattern id="pattern-Checkerboard" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                <% } else if (pattern == "checkerboard") { %>
+                    <pattern id="pattern-checkerboard" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
                       <rect class="checker" x="0" width="10" height="10" y="0"></rect>
                       <rect class="checker" x="10" width="10" height="10" y="10"></rect>
                     </pattern>
-                <% } else if (rect.pattern == "Cubes") { %>
-                    <pattern id="pattern-Cubes" x="0" y="12.6" patternUnits="userSpaceOnUse" width="12.6" height="20" viewBox="0 0 10 16"> 
+                <% } else if (pattern == "cubes") { %>
+                    <pattern id="pattern-cubes" x="0" y="12.6" patternUnits="userSpaceOnUse" width="12.6" height="20" viewBox="0 0 10 16"> 
                       <!-- Cube code courtest of SVGeneration: http://www.svgeneration.com/recipes/3D-Cubes/ -->
                       <g id="cube">
                         <!-- We'll apply the `fill` in the CSS for flexibility -->
@@ -152,7 +152,7 @@
                       <use x="-5" y="8" xlink:href="#cube"></use>
                     </pattern>
                 <% } %>
-                <rect x="0" y="0" width="<%= rect.width %>" height="<%= rect.height%>" fill="url(#pattern-<%=rect.pattern%>)" 
+                <rect x="0" y="0" width="<%= rect.width %>" height="<%= rect.height%>" fill="url(#pattern-<%=pattern%>)" 
                   style="stroke:<%=rect.bordercolor %>;stroke-width:5; opacity:<%=rect.opacity%>";>
                 />
               <% } %>

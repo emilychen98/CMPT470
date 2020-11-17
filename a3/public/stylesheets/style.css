@@ -1,8 +1,10 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  /* background:#95B183; */
   background:#5a1d0c;
+  min-width: 1150px;
+  width: auto !important; 
+  width:1150px;   
 }
 
 a {

@@ -50,7 +50,7 @@ function updateRect(){
     var color = this.parentNode.parentNode.cells[3].textContent;
     var bordercolor = this.parentNode.parentNode.cells[4].textContent;
     var opacity = this.parentNode.parentNode.cells[5].textContent;
-    var pattern = this.parentNode.parentNode.cells[6].textContent;
+    var pattern = this.parentNode.parentNode.cells[6].textContent.toLowerCase();
 
     axios({
         method: "POST",
