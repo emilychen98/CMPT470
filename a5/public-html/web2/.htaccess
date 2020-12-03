@@ -1,0 +1,7 @@
+AuthUserFile /usr/local/apache2/passwd/.htpasswd
+AuthGroupFile /usr/local/apache2/passwd/.htgroup
+AuthName "grp2 Area"
+AuthType Basic
+<Limit GET POST>
+require group grp2
+</Limit>

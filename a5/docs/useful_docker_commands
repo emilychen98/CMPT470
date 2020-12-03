@@ -1,0 +1,10 @@
+sudo docker build -t my-apache2 .
+
+docker run --rm httpd:2.4 cat /usr/local/apache2/conf/httpd.conf > my-httpd.conf
+docker run --rm httpd:2.4 cat /usr/local/apache2/conf/extra/httpd-vhosts.conf > httpd-vhosts.conf
+
+docker run -dit --name my-running-app -p 8080:80 my-apache2
+docker run -dit --name my-running-app -p 443:443 my-apache2
+docker run --rm -d -p 443:443 my-apache2
+
+docker exec -ti my-running-app bash
