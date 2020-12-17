@@ -1,0 +1,7 @@
+Create a docker image that contains a simple session-based login (in either PHP or NodeJS) that queries a
+database for two names:
+- user: bobby, password: 1234
+- user: sarah, password: 4567
+these passwords should be hashed in the DB using a salted md5 algorithm.
+You should be able to run the image using the command:
+> docker run -p 80:80 --rm -d <your_image>
